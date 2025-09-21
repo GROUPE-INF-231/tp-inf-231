@@ -1,34 +1,28 @@
 #include <stdio.h>
 
-unsigned int produit1(unsigned int a,unsigned int b){
+int produit_1(int a, int b) {
+    int i;
+    int resultat = 0;
+    for (i = 0; i < a * b; i++) {
+        resultat += 1;
+    }
 
-    int resultat=0;
-for(size_t i=0;i<a*b;i++){
-    resultat+=1;
+    return resultat;
 }
 
-return resultat;
+int main() {
+    int nombre1, nombre2, produit;
 
-}
+    printf("Entrer deux nombres positifs:\n");
+    do {
+        scanf("%d %d", &nombre1, &nombre2);
+        if (nombre1 < 0 || nombre2 < 0) {
+            printf("Erreur! Entrer deux nombres positifs:\n");
+        }
+    } while (nombre1 < 0 || nombre2 < 0);
 
+    produit = produit_1(nombre1, nombre2);
 
-int main(){
-printf("entrer un nombre a:");
-unsigned int a;
-printf("\n");
-scanf("%d",&a);
-printf("entrer un nombre b:");
-unsigned int b;
-scanf("%d",&b);
-
-
-unsigned int c=produit1(a,b);
-
-printf("\n");
-printf("la multiplication de a*b=%d",c);
-
-printf("\n");
-
-
+    printf("Le produit de %d * %d = %d", nombre1, nombre2, produit);
 
 }
