@@ -1,174 +1,47 @@
 #include <stdio.h>
-#include <stdlib.h>
 
+void add_matrice(int ligne, int colonne, double MatrA[ligne][colonne], double MatrB[ligne][colonne]) {
+        int i, j;
 
-void add_matrice1(int ligne,int colonne,double MatrA[ligne][colonne],double MatrB[ligne][colonne]){
-
-        double MatrC[ligne][colonne];
-
-                for(size_t i=0;i<=ligne-1;i++){
-                        for(size_t j=0;j<=colonne-1;j++){
-                                MatrC[i][j]=MatrA[i][j]+MatrB[i][j];
-                        }
-
+        for (i = 0; i < ligne; i++) {
+                for (j = 0; j < colonne; j++) {
+                        printf("%.1lf ", MatrA[i][j] + MatrB[i][j]);
                 }
-
-	
-
-    	for(size_t i=0;i<=ligne-1;i++){
-		for(size_t j=0;j<=colonne-1;j++){
-			printf("%lf ", MatrC[i][j]);
-		}
-
-		printf("\n");
-	}
-}
-
-
-
-
-int main(){
-
-	int ligne;
-	int colonne;
-
-	printf("entrer le nombre de ligne de votre matrice:");
-	scanf("%d",&ligne);
-	printf("entrer le nombre de colonne de votre matrice:");
-	scanf("%d",&colonne);
-	
-	 double **MatrC=(double **)malloc(ligne*sizeof(double *));
-
-        if(MatrC==NULL){
-                perror("->");
-                exit(1);
-        }
-
-for(size_t k=0;k<=ligne-1;k++){
-                MatrC[k]=(double *)malloc(colonne*sizeof(double));
-
-                if(MatrC[k]==NULL){
-                        perror("->");
-
-
-
-
-                for(size_t i=0;i<=k-1;i++){
-                        free(MatrC[i]);
-
-                }
-        
-                free(MatrC);
-
-                                exit(1);
-                }
-}
-
-
-
- double **MatrB=(double **)malloc(ligne*sizeof(double *));
-
-        if(MatrB==NULL){
-                perror("->");
-                exit(1);
-        }
-
-for(size_t k=0;k<=ligne-1;k++){
-                MatrB[k]=(double *)malloc(colonne*sizeof(double));
-
-                if(MatrB[k]==NULL){
-                        perror("->");
-
-
-
-
-                for(size_t i=0;i<=k-1;i++){
-                        free(MatrC[i]);
-
-                }
-        
-                free(MatrB);
-
-                        
-                exit(1);
-        }
-}
-
-printf("remplissez la premiere matrice:");
-
-for(size_t i=0;i<=ligne-1;i++){
-	for(size_t j=0;j<=colonne-1;j++){
-                printf("(%ld,%ld):",i,j);
-		scanf("%lf",&MatrC[i][j]);
-	}
-
-        
-}
-        printf("\n");
-
- printf("remplissez la deuxieme matrice:");
-
-for(size_t i=0;i<=ligne-1;i++){
-        for(size_t j=0;j<=colonne-1;j++){
-                printf(" (%ld,%ld):",i,j);
-                scanf("%lf",&MatrB[i][j]);
-        }
-}
-
-
-printf("\n");
-
-double **MatrV=(double **)malloc(ligne*sizeof(double *));
-
-        if(MatrV==NULL){
-                perror("->");
-                exit(1);
-        }
-
-for(size_t k=0;k<=ligne-1;k++){
-                MatrV[k]=(double *)malloc(colonne*sizeof(double));
-
-                if(MatrV[k]==NULL){
-                        perror("->");
-
-
-
-
-                for(size_t i=0;i<=k-1;i++){
-                        free(MatrV[i]);
-
-                }
-
-                free(MatrV);
-                exit(1);
-        }
-                
-
-
-}
-
-
-
-MatrV=add_matrice(MatrC,MatrB,colonne,ligne);
-
-printf("la somme des deux matrices est:\n");
-for(size_t i=0;i<=ligne-1;i++){
-                for(size_t j=0;j<=colonne-1;j++){
-                        printf("%.2lf   ", MatrV[i][j]);
-                }
-
                 printf("\n");
         }
-        for(size_t i=0;i<=ligne-1;i++){
-                free(MatrC[i]);
-                free(MatrB[i]);
-                free(MatrV[i]);
+}
 
-        }        
+int main() {
+        int ligne, colonne;
+        int i, j;
 
+        do {
+                printf("Entrez la dimension des matrices (ligne * colonne):\n");
+                scanf("%d %d", &ligne, &colonne);
+                if (ligne < 0 || colonne < 0) {
+                        printf("Erreur! Entrez des dimensions valides:\n");
+                }
+        } while (ligne < 0 || colonne < 0);
 
-        free(MatrC);
-        free(MatrV);
-        free(MatrB);
-	return 0;
+        double MatrA[ligne][colonne], MatrB[ligne][colonne];
+
+        printf("Remplissez la premiere matrice:\n");
+        for (i = 0; i < ligne; i++) {
+                for (j = 0; j < colonne; j++) {
+                        printf("M[%d][%d] = ", i, j);
+                        scanf("%lf", &MatrA[i][j]);
+                }
+        }
+
+        printf("Remplissez la deuxieme matrice:\n");
+        for (i = 0; i < ligne; i++) {
+                for (j = 0; j < colonne; j++) {
+                        printf("M[%d][%d] = ", i, j);
+                        scanf("%lf", &MatrB[i][j]);
+                }
+        }
+
+        printf("La somme des deux matrices est:\n");
+        add_matrice(ligne, colonne, MatrA, MatrB);
+        return 0;
 }
