@@ -1,71 +1,55 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-
-
-void trie(double tab[],int TailleMax){
-    int MAX;
-
-    for(size_t i=0;i<TailleMax-1;i++){
-
-        for(size_t j=0;j<TailleMax-i-1;j++){
-            if(tab[j]>tab[j+1])
-            {
-                MAX=tab[j];
-                tab[j]=tab[j+1];
-                tab[j+1]=MAX;
+//trie à bulle
+void trie(double tab[], int tailleMax) {
+    int i, j;
+    double temp;
+    for (i = 0; i < tailleMax - 1; i++) {
+        for (j = 0; j < tailleMax - 1 - i; j++) {
+            if (tab[j] > tab[j + 1]) {
+                temp = tab[j];
+                tab[j] = tab[j + 1];
+                tab[j + 1] = temp;
             }
         }
     }
 }
 
-double median_tab(double tab[],int  TailleMax){
-
-    double median=0;
-
-    if(TailleMax%2==0){
-        median=tab[TailleMax/2-1]+tab[TailleMax];
-
-    }else{
-        median=tab[TailleMax/2];
+double median_tab(double tab[], int tailleMax) {
+    if (tailleMax % 2 == 0) {
+        double resultat = (tab[tailleMax / 2 - 1] + tab[tailleMax / 2]) / 2;
+        return resultat;
     }
-    return median;
-
+    else {
+        return tab[tailleMax / 2];
+    }
 }
 
+int main() {
+    int i, j, taille;
 
-int main(){
-int Taille;
-printf("entrer le nombre de element que tu veux dans ton tableau:");
-scanf("%d",&Taille);
-double tab1[Taille];
+    printf("Entrez le nombre d'elements du tableau:\n");
+    do {
+        scanf("%d", &taille);
+        if (taille <= 0) {
+            printf("Erreur! Entrez une valeur valide:\n");
+        }
+    } while (taille <= 0);
 
-printf("remplissage de votre tableau:");
+    double tab1[taille];
+    printf("Remplissez le tableau:\n");
+    for (i = 0; i < taille; i++) {
+        scanf("%lf", &tab1[i]);
+    }
 
-printf("\n");
+    trie(tab1, taille);
 
-for(size_t i=0;i<=Taille-1;i++){
-    printf(" case%ld :",i);
-    
-    scanf("%lf",&tab1[i]);
-    printf("\n");
-}
+    printf("Tableau trie:\n");
+    for (i = 0; i < taille; i++) {
+        printf("%.1lf\n", tab1[i]);
+    }
 
-trie(tab1,Taille);
-
-for(size_t i=0;i<=Taille-1;i++){
-    printf("%lf ",tab1[i]);
-    printf("\n");
-}
-printf("-----------------------------------------------------------------------\n");
-double median;
-    median=median_tab(tab1,Taille);
-
-    printf("la median de ce Tableau est %.2f",median);
-    printf("\n");
-
-
+    printf("La mediane de ce tableau est: %.2f\n", median_tab(tab1, taille));
 
     return 0;
-
 }
