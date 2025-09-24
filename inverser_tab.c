@@ -1,47 +1,50 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-void inverser_tab(double tab[],int TailleMax){
+#define MAX 100
 
-    double temp;
-    
-    for(size_t i=0;i<TailleMax/2;i++){
-        
-        temp=tab[i];
-        tab[i]=tab[TailleMax-1-i];
-        tab[TailleMax-1-i]=temp;
-
-
+void printTab(double tab[], int taille) {
+    int i;
+    for (i = 0; i < taille; i++) {
+        printf("%.1lf ", tab[i]);
     }
-
+    printf("\n");
 }
 
-int main(){
-
-int Taille;
-
-printf("entrer la taille de votre tableau:");
-scanf("%d",&Taille);
-
-double tableau[Taille];
-
-printf("\n");
-printf("remplir le tableau");
-printf("\n");
-
-for(size_t i=0;i<=Taille-1;i++)
-{
-
-    scanf("%lf",&tableau[i]);
-
-    printf("\t");
+void inverser_tab(double tab[], int tailleMax) {
+    int i;
+    double temp;
+    for (i = 0;i < tailleMax / 2;i++) {
+        temp = tab[i];
+        tab[i] = tab[tailleMax - 1 - i];
+        tab[tailleMax - 1 - i] = temp;
+    }
+    printTab(tab, tailleMax);
 }
 
-inverser_tab(tableau,Taille);
+int main() {
+    double tableau[MAX];
+    int taille = 0;
+    double x;
 
-for(size_t i=0;i<=Taille-1;i++){
-    printf("%lf",tableau[i]);
-    printf("\t");
-}
+    printf("Entrez les elements du tableau: (-999 pour terminer):\n");
+    do {
+        scanf("%lf", &x);
+        if (x != -999) {
+            if (taille < MAX) {
+                tableau[taille++] = x;
+            }
+            else {
+                printf("Taille maximale (%d) atteinte.\n", MAX);
+                break;
+            }
+        }
+    } while (x != -999);
 
+    printf("Tableau Original:\n");
+    printTab(tableau, taille);
+
+    printf("Tableau Inverse:\n");
+    inverser_tab(tableau, taille);
+
+    return 0;
 }
