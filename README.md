@@ -1,4 +1,4 @@
-#  INF 231_EC2 : STRUCTURE DE DONNÉES II – Exercices en C
+#  INF 231_EC2 : STRUCTURE DE DONNÉES II – Exercices C
 
 ##  Superviseur   
 **PR. MELATAGIA Paulin**
@@ -35,3 +35,8 @@ gcc add_matrices.c -o add_matrices
 ##  Collaborateurs
 
 - **FAGNA TCHAPTCHET Noel Vanys 24G2310**
+- **DEMANOU FOUDJI Karl Albert Kuete 24F2995**
+- **ABONDO Jean Joël 23V2214**
+- **CHOUPO FOGAING Rudy Aubin 24G2708**
+- **BAKALACK BASILE Romain 23V2529**
+- **NGUIMGOU ZEPA Eveline Oceane 24F2579**
