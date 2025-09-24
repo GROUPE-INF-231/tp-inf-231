@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include <stdlib.h>
+#define MAX 100
 
-int recherche(float a, int n, float tab[])
+int recherche(double a, int n, double tab[])
 {
     int i;
     for (i = 0; i < n; i++)
@@ -16,17 +16,36 @@ int recherche(float a, int n, float tab[])
 
 int main()
 {
-    float a, tab[] = {0.5, 5, 8, 45, 2.5, 8, 78, 50, 4.3};
+    double tableau[MAX];
+    int taille = 0;
+    double x;
+
+    printf("Entrez les elements du tableau: (-999 pour terminer):\n");
+    do {
+        scanf("%lf", &x);
+        if (x != -999) {
+            if (taille < MAX) {
+                tableau[taille++] = x;
+            }
+            else {
+                printf("Taille maximale (%d) atteinte.\n", MAX);
+                break;
+            }
+        }
+    } while (x != -999);
+
+    double a;
     printf("Veuillez entrer le reel a rechercher\n");
-    scanf("%f", &a);
-    int indice = recherche(a, 9, tab);
+    scanf("%lf", &a);
+
+    int indice = recherche(a, taille, tableau);
     if (indice == -1)
     {
         printf("Cet element ne fait pas partie du tableau\n");
     }
     else
     {
-        printf("L indice de cet element est %d\n", indice);
+        printf("Element present. L'indice de cet element est %d\n", indice);
     }
     return 0;
 }
