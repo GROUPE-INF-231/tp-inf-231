@@ -47,3 +47,8 @@
 - **recherche_seq.c** :  
   - Ajout de conditions pour les cas d’erreur.  
   - Introduction d’une variable globale `MAX` pour définir la taille du tableau et faciliter la maintenance.
+
+### Autres contributions
+- Création et mise en place du compte **GitHub Organization**.  
+- Aide à la création des comptes GitHub pour les membres du groupe.
+
